@@ -45,7 +45,7 @@ public class OrderRepository {
         return jdbcTemplate.query(sql, orderMapper);
     }
 
-    public BigDecimal getTotalPriceOfAllOrders(List<Order> orderList){
+    public BigDecimal getTotalPriceOfOrders(List<Order> orderList){
         BigDecimal totalPrice = BigDecimal.ZERO;
         for(Order order : orderList){
             totalPrice = totalPrice.add(order.getTotalPrice());
@@ -57,6 +57,18 @@ public class OrderRepository {
         String sql = String.format("select * from orders join order_items on orders.id = " +
                 "order_items.order_id where order_items.product_id = %s", product.getId());
         return jdbcTemplate.query(sql, orderMapper);
+    }
+
+    public List<User> setOrders(List<User> userList){
+        for(User user : userList){
+            user.setOrders(findOrdersByUser(user));
+        }
+        return userList;
+    }
+
+    public User setOrderForOne(User user){
+        user.setOrders(findOrdersByUser(user));
+        return user;
     }
 
 

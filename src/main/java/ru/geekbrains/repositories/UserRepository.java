@@ -8,6 +8,7 @@ import ru.geekbrains.entities.User;
 import ru.geekbrains.mappers.UserMapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -60,10 +61,12 @@ public class UserRepository {
     }
 
     public List<User> findByProduct(Product product) {
-        String sql = String.format("select * from users join orders on users.id = orders.user_id join order_items " +
-                "on orders.id = order_items.order_id where order_items.product_id = %s", product.getId());
-        return jdbcTemplate.query(sql, userMapper);
+        String sql = String.format("select * from users join orders on users.id = orders.user_id" +
+                " join order_items on orders.id = order_items.order_id where order_items.product_id = %s", product.getId());
+//        return jdbcTemplate.query(sql, userMapper);
+        return jdbcTemplate.query(sql, userMapper).stream().distinct().collect(Collectors.toList());
     }
+
 
 }
 

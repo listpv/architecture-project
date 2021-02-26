@@ -9,7 +9,8 @@
 <body>
 <div class="container">
     <div th:replace="~{fragments/navigation :: navigation(Users)}" />
-    <h1>Список клиентов</h1>
+    <h1>Список клиентов,</h1>
+    <h2>купивших товар <a th:href="@{'/admin/product/' + ${product.id}}" th:text="${product.title}" ></a></h2>
 
     <br>
     <table class="table table-hover">
@@ -24,7 +25,6 @@
             <th>Телефон</th>
             <th>Количество заказов</th>
             <th>Действие</th>
-            <th>Связь</th>
         </tr>
         </thead>
         <tbody>
@@ -39,9 +39,6 @@
             <td th:text="${u.orders.size()}"/>
             <td>
                 <a class="btn btn-primary" th:href="@{'/admin/user/' + ${u.id}}">Посмотреть</a>
-            </td>
-            <td>
-                <a class="btn btn-danger" th:href="@{'/admin/user_connect/' + ${u.id}}">Связаться</a>
             </td>
 
         </tr>

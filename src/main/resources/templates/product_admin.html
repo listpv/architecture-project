@@ -10,7 +10,8 @@
     <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
 </head>
 <body>
-<div th:replace="~{fragments/navigation :: store-navigation}"></div>
+<!--<div th:replace="~{fragments/navigation :: store-navigation}"></div>-->
+<div th:replace="~{fragments/navigation :: navigation(Products)}" />
 
 <!-- Page Content -->
 <div class="container">
@@ -30,11 +31,11 @@
                     <div class="card h-100">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a th:href="@{'/product/' + ${product.id}}" th:text="${product.title}"></a>
+                                <td th:text="${product.title}"/>
                             </h4>
                             <h5 th:text="#{text.products.price(${product.price})}"></h5>
                             <h5 class="card-text">
-                                Category: <a th:href="@{'/category/' + ${product.category.code}}" th:text="${product.category.name}" ></a>
+                                Category: <td th:text="${product.category.name}" />
                             </h5>
                             <p class="card-text" th:text="${product.brandName}"></p>
                             <p class="card-text">

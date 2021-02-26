@@ -1,7 +1,6 @@
 package ru.geekbrains.mappers;
 
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.stereotype.Component;
 import ru.geekbrains.entities.Role;
 
 import java.sql.ResultSet;

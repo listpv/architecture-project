@@ -3,7 +3,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.entities.Category;
 import ru.geekbrains.repositories.CategoryRepository;
-import ru.geekbrains.repositories.ProductRepository;
 import java.util.List;
 
 @Service

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Связь</title>
+    <th:block th:replace="~{fragments/resources :: head/link}"></th:block>
+    <th:block th:replace="~{fragments/resources :: head/script}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{fragments/navigation :: navigation(Users)}" />
+    <h1>Связь</h1>
+    <br>
+    <h1>
+        Какая-то связь с клиентом <td th:text="${user.name}"></td>
+<!--        <a th:href="@{'/admin/user/' + ${user.id}}" th:text="${user.name}"></a>-->
+    </h1>
+</div>
+
+</body>
+</html>

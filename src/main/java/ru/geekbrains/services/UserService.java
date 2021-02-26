@@ -38,7 +38,6 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-//    private final RoleService roleService;
     private final RoleRepository roleRepository;
     private final UserRoleRepository userRoleRepository;
     private final OrderRepository orderRepository;
@@ -50,8 +49,8 @@ public class UserService implements UserDetailsService {
 //        this.userRepository = userRepository;
 //        this.passwordEncoder = passwordEncoder;
 //    }
-
-
+//
+//
 //    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder,
 //                       RoleService roleService, UserRoleRepository userRoleRepository) {
 //        this.userRepository = userRepository;
@@ -74,9 +73,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getOne(Long id){
-        User user = userRepository.getOne(id);
-        user.setOrders(orderRepository.findOrdersByUser(user));
-        return user;
+        return orderRepository.setOrderForOne(userRepository.getOne(id));
     }
 
 //    public User createUser(UserData userData){
@@ -164,18 +161,10 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll(){
-        List<User> userList = userRepository.findAll();
-        for(User user : userList){
-            user.setOrders(orderRepository.findOrdersByUser(user));
-        }
-        return userList;
+        return orderRepository.setOrders(userRepository.findAll());
     }
 
     public List<User> findByProduct(Product product){
-        List<User> userList = userRepository.findByProduct(product);
-        for(User user : userList){
-            user.setOrders(orderRepository.findOrdersByUser(user));
-        }
-        return userList;
+        return orderRepository.setOrders(userRepository.findByProduct(product));
     }
 }

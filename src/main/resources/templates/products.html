@@ -53,9 +53,9 @@
             <td th:text="${p.brandName}"/>
             <td th:text="#{text.products.price(${p.price})}"/>
             <td>
-                <a class="btn btn-success" sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/cart/add/' + ${p.id}}">В корзину</a>
+<!--                <a class="btn btn-success" sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/cart/add/' + ${p.id}}">В корзину</a>-->
                 <a class="btn btn-danger" sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/admin/products/edit/' + ${p.id}}">Изменить</a>
-                <a class="btn btn-danger" sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/admin/product/' + ${p.id}}">Просмотреть</a>
+                <a class="btn btn-success" sec:authorize="hasAnyRole('ADMIN')" th:href="@{'/admin/product/' + ${p.id}}">Просмотреть</a>
             </td>
         </tr>
         </tbody>

@@ -16,9 +16,7 @@ import ru.geekbrains.utils.Subject;
 
 import javax.annotation.PostConstruct;
 import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -108,10 +106,12 @@ public class AdminController extends Subject {
     public String ordersWithProduct(
             @PathVariable Long id,
             Model model){
-        List<Order> orders = orderService.findByProduct(productService.getOne(id));
+        Product product = productService.getOne(id);
+        List<Order> orders = orderService.findByProduct(product);
         model.addAttribute("orders", orders);
         model.addAttribute("total_price", orderService.getTotalPriceOfAllOrders(orders));
-        return "orders";
+        model.addAttribute("product", product);
+        return "orders_product";
     }
 
     @Secured({"ROLE_ADMIN"})
@@ -119,9 +119,11 @@ public class AdminController extends Subject {
     public String usersWithProduct(
             @PathVariable Long id,
             Model model){
-        List<User> users = userService.findByProduct(productService.getOne(id));
+        Product product = productService.getOne(id);
+        List<User> users = userService.findByProduct(product);
         model.addAttribute("users", users);
-        return "users";
+        model.addAttribute("product", product);
+        return "users_product";
     }
 
     @Secured({"ROLE_ADMIN"})
@@ -171,6 +173,15 @@ public class AdminController extends Subject {
         model.addAttribute("name", userService.getOne(id).getName());
         model.addAttribute("total_price", orderService.getTotalPriceOfAllOrders(orders));
         return "user_orders";
+    }
+
+    @Secured({"ROLE_ADMIN"})
+    @GetMapping("/user_connect/{id}")
+    public String userConnection(
+            @PathVariable("id") Long id,
+            Model model){
+        model.addAttribute("user", userService.getOne(id));
+        return "user_connect";
     }
 
 }

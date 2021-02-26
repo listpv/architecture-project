@@ -15,9 +15,9 @@
                 <li class="nav-item" th:classappend="${activeTab == 'Products' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/admin/products}">Продукты</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/cart}" th:text="#{text.cart.total(${@cartServiceRealization.totalQuantity}, ${@cartServiceRealization.totalPrice})}"/>
-                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" th:href="@{/cart}" th:text="#{text.cart.total(${@cartServiceRealization.totalQuantity}, ${@cartServiceRealization.totalPrice})}"/>-->
+<!--                </li>-->
                 <li class="nav-item" th:classappend="${activeTab == 'Orders' ? 'active' : ''}">
                     <a class="nav-link" th:href="@{/admin/orders}">Заказы</a>
                 </li>

@@ -2,8 +2,6 @@ package ru.geekbrains.repositories;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.geekbrains.entities.Product;
@@ -32,11 +30,6 @@ public class ProductRepository {
         jdbcTemplate.execute(sql);
     }
 
-//    public List<Product> findAll(){
-//        String sql = String.format("select * from products");
-//        return jdbcTemplate.query(sql, productMapper);
-//    }
-
     public List<Product> findAll(){
         StringBuilder stringForSql = new StringBuilder("");
         if(identityMap.size() != 0){
@@ -44,11 +37,9 @@ public class ProductRepository {
             for(Long i : identityMap.keySet()){
                 stringForSql.append("id != ").append(i).append(" and ");
             }
-//            System.out.println("STRING STRING_FOR_SQL --  " + stringForSql);
             stringForSql.delete(stringForSql.length() - 5, stringForSql.length());
         }
         String sql = String.format("select * from products" + stringForSql);
-//        System.out.println("STRING SQL --  " + sql);
         List<Product> productList = jdbcTemplate.query(sql, productMapper);
         if(productList.size() != 0){
             for(Product p : productList){

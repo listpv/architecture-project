@@ -56,7 +56,7 @@ public class OrderService {
     }
 
     public BigDecimal getTotalPriceOfAllOrders(List<Order> orderList){
-        return orderRepository.getTotalPriceOfAllOrders(orderList);
+        return orderRepository.getTotalPriceOfOrders(orderList);
     }
 
     public List<Order> findByProduct(Product product){
